@@ -7,7 +7,7 @@ senha();
 function inicio() {
     alert("Bem vindo " + nome_Fun + " aproveite os serviços desse programa para o seu hotel: " + nome_Hotel);
 
-    var opcoes = parseInt(prompt("Escolha um serviço do " + nome_Hotel + "\n 1 - Reserva de quartos \n 2 - Cadastro de hospedes \n 3 - Serviço de hospedagem \n 4 - Reserva para eventos \n 5 - Serviço para Buffet \n 6 - Serviço para o auditório \n 7 - Reserva no restaurante \n 8 - Serviço de abastecimento \n 9 - Serviço para manutenção \n 10 - Sair"))
+    var opcoes = parseInt(prompt("Escolha um serviço do " + nome_Hotel + "\n 1 - Reserva de quartos \n 2 - Cadastro de hospedes \n 3 - Serviço de hospedagem \n 4 - Reserva para eventos \n 5 - Serviço para Buffet \n 6 - Serviço para o auditório \n 7 - Reserva no restaurante \n 8 - Serviço de abastecimento \n 9 - Serviço para manutenção \n 10 - Sair"));
 
     switch (opcoes) {
         case 1:
@@ -70,9 +70,9 @@ function reserva_Quartos() {
     var resposta = prompt(nome_Fun + ", você confirma a hodedagem de " + nome + " por " + dias + " dias (S/N)");
 
     if (resposta === "S") {
-        alert(nome_Fun + ", à reserva foi efetuda para " + nome + ", no valor de: R$" + total);
+        alert(nome_Fun + ", reserva foi efetuda para " + nome + ", no valor de: R$" + total);
     } else {
-        alert(nome_Fun + ", à reserva não foi efetuada");
+        alert(nome_Fun + ", reserva não foi efetuada");
     }
 
     var retorno = prompt(nome_Fun + ", você deseja voltar para o inicio? (S/N)");
@@ -91,7 +91,7 @@ function hospedes_Cadastro() {
 
     do {
         var valor_padrao = parseFloat(prompt("Qual o valor padrão da diária: "));
-        var valor_Meia = valor_padrao / 2
+        var valor_Meia = valor_padrao / 2;
         var nome_hospedes = prompt("Cadastre os hospedes:  ");
         var idade = parseInt(prompt("Informe a idade do hospede: "));
 
@@ -110,7 +110,7 @@ function hospedes_Cadastro() {
 
     } while (resposta_2 === "S");
 
-    alert(nome_Fun + ". Tivemos no total " + gratuidade + " de hospedagem gratuita \n" + "e tivemos no total  " + meia + " de meia hospedagem .\n" + "Com isso lucramos no total: R$ " + total + " em hospedagens");
+    alert(nome_Fun + ". Tivemos no total " + gratuidade + "hospedagem gratuita \n" + "e tivemos no total  " + meia + " meia hospedagem .\n" + "Com isso lucramos no total: R$ " + total + " em hospedagens");
    
     var retorno = prompt(nome_Fun + ", você deseja voltar para o inicio? (S/N)");
 
@@ -235,7 +235,7 @@ function hotel_Buffet() {
         hotel_Buffet();
     }
 
-    var contratar = prompt(nome_Fun + ", você quer contratar garçons para esse buffet? (S/N)")
+    var contratar = prompt(nome_Fun + ", você quer contratar garçons para esse buffet? (S/N)");
 
     if (contratar === "S") {
         hotel_Eventos();
@@ -262,7 +262,7 @@ function hotel_Auditorio() {
     } else if (convidados_Num <= 150) {
         alert("Utilize o auditório laranja");
     } else if (convidados_Num <= 220) {
-        alert("Utilize o auditório laranja e inclua mais " + cadeira_Adi + " cadeiras adicionais")
+        alert("Utilize o auditório laranja e inclua mais " + cadeira_Adi + " cadeiras adicionais");
     } else if (convidados_Num <= 350) {
         alert("Utilize o auditório colorado");
     }
@@ -374,16 +374,15 @@ function manutencao_Hotel() {
 
         alert(nome_Fun + ", o serviço da " + empresa_N + " vai custar R$" + valor_S);
 
-        var resposta_3 = prompt( + nome_Fun + ", você deseja conhecer outros serviços? (S/N)");
+        var resposta_3 = prompt(nome_Fun + ", você deseja conhecer outros serviços? (S/N)");
 
+        if (valor_S < menor_V) {
+            menor_V = valor_S;
+            empresa_O = empresa_N;
+        }
+    
+        empresas.push({ nome: empresa_N, valor: valor_S });
     } while (resposta_3 === "S");
-
-    if (valor_S < menor_V) {
-        menor_V = valor_S;
-        empresa_O = empresa_N;
-    }
-
-    empresas.push({ nome: empresa_N, valor: valor_S });
 
     alert(nome_Fun + ", o orçamento com valor mais baixo é da " + empresa_O + " no valor de R$" + menor_V);
 
@@ -403,7 +402,7 @@ function erro() {
 
 function sair() {
     var confirma_3 = confirm(nome_Fun + "você deseja encerrar o programa?");
-    alert("Agradecemos por usar este programa " + nome_Fun + ", foi um prazer ter você por aqui!!")
+    alert("Agradecemos por usar este programa " + nome_Fun + ", foi um prazer ter você por aqui!!");
 
     if (confirma_3 === true) {
         window.close();

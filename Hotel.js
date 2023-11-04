@@ -70,9 +70,9 @@ function reserva_Quartos() {
     var resposta = prompt(nome_Fun + ", você confirma a hodedagem de " + nome + " por " + dias + " dias (S/N)");
 
     if (resposta === "S") {
-        alert(nome_Fun + ", reserva foi efetuda para " + nome + ", no valor de: R$" + total);
+        alert(nome_Fun + ", à reserva foi efetuda para " + nome + ", no valor de: R$" + total);
     } else {
-        alert(nome_Fun + ", reserva não foi efetuada");
+        alert(nome_Fun + ", à reserva não foi efetuada");
     }
 
     var retorno = prompt(nome_Fun + ", você deseja voltar para o inicio? (S/N)");
@@ -110,7 +110,7 @@ function hospedes_Cadastro() {
 
     } while (resposta_2 === "S");
 
-    alert(nome_Fun + ". Tivemos no total " + gratuidade + "hospedagem gratuita \n" + "e tivemos no total  " + meia + " meia hospedagem .\n" + "Com isso lucramos no total: R$ " + total + " em hospedagens");
+    alert(nome_Fun + ". Tivemos no total " + gratuidade + " de hospedagem gratuita \n" + "e tivemos no total  " + meia + " de meia hospedagem .\n" + "Com isso lucramos no total: R$ " + total + " em hospedagens");
    
     var retorno = prompt(nome_Fun + ", você deseja voltar para o inicio? (S/N)");
 

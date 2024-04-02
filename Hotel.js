@@ -1,13 +1,23 @@
 alert("Boas vindas a este serviço \n Por aqui você vai gerenciar o funcionamento do seu hotel");
+
 var nome_Hotel = prompt("Para começar me fale o nome do seu hotel");
 var nome_Fun = prompt("Agora me fale o seu nome");
 
+var listaHospedes = [];
+
+var info = [
+    {
+        nome: nome_Fun,
+        hotel: nome_Hotel
+    }
+];
+
 senha();
 
-function inicio() {
-    alert("Bem vindo " + nome_Fun + " aproveite os serviços desse programa para o seu hotel: " + nome_Hotel);
+alert("Bem vindo " + info[0].nome + " aproveite os serviços desse programa para o seu hotel: " + info[0].hotel);
 
-    var opcoes = parseInt(prompt("Escolha um serviço do " + nome_Hotel + "\n 1 - Reserva de quartos \n 2 - Cadastro de hospedes \n 3 - Serviço de hospedagem \n 4 - Reserva para eventos \n 5 - Serviço para Buffet \n 6 - Serviço para o auditório \n 7 - Reserva no restaurante \n 8 - Serviço de abastecimento \n 9 - Serviço para manutenção \n 10 - Sair"));
+function inicio() {
+    var opcoes = parseInt(prompt("Escolha um serviço do " + info[0].hotel + "\n 1 - Reserva de quartos \n 2 - Cadastro de hospedes \n 3 - Serviço de hospedagem \n 4 - Reserva para eventos \n 5 - Serviço para Buffet \n 6 - Serviço para o auditório \n 7 - Reserva no restaurante \n 8 - Serviço de abastecimento \n 9 - Serviço para manutenção \n 10 - Sair"));
 
     switch (opcoes) {
         case 1:
@@ -37,7 +47,7 @@ function inicio() {
 }
 
 function senha() {
-    var senha_A = parseInt(prompt(nome_Fun + ", por favor informe a sua senha de acesso"));
+    var senha_A = parseInt(prompt(info[0].nome + ", por favor informe a sua senha de acesso"));
 
     if (senha_A === 2678) {
         alert("Acesso liberado");
@@ -55,10 +65,10 @@ function reserva_Quartos() {
     var total = diaria * dias;
 
     if (diaria <= 0) {
-        alert("Valor inválido " + nome_Fun);
+        alert("Valor inválido " + info[0].nome);
         reserva_quartos();
     } else if (dias > 30) {
-        alert("Essa quantidade não é permitida " + nome_Fun);
+        alert("Essa quantidade não é permitida " + info[0].nome);
         reserva_quartos();
     } else if (dias === 0) {
         alert("Erro no valor");
@@ -67,15 +77,15 @@ function reserva_Quartos() {
         var nome = prompt("Informe o nome da(o) hospede: ");
     }
 
-    var resposta = prompt(nome_Fun + ", você confirma a hodedagem de " + nome + " por " + dias + " dias (S/N)");
+    var resposta = prompt(info[0].nome + ", você confirma a hodedagem de " + nome + " por " + dias + " dias (S/N)");
 
     if (resposta === "S") {
-        alert(nome_Fun + ", reserva foi efetuda para " + nome + ", no valor de: R$" + total);
+        alert(info[0].nome + ", reserva foi efetuda para " + nome + ", no valor de: R$" + total);
     } else {
-        alert(nome_Fun + ", reserva não foi efetuada");
+        alert(info[0].nome + ", reserva não foi efetuada");
     }
 
-    var retorno = prompt(nome_Fun + ", você deseja voltar para o inicio? (S/N)");
+    var retorno = prompt(info[0].nome + ", você deseja voltar para o inicio? (S/N)");
 
     if (retorno === "S") {
         inicio();
@@ -110,9 +120,9 @@ function hospedes_Cadastro() {
 
     } while (resposta_2 === "S");
 
-    alert(nome_Fun + ". Tivemos no total " + gratuidade + "hospedagem gratuita \n" + "e tivemos no total  " + meia + " meia hospedagem .\n" + "Com isso lucramos no total: R$ " + total + " em hospedagens");
+    alert(info[0].nome + ". Tivemos no total " + gratuidade + "hospedagem gratuita \n" + "e tivemos no total  " + meia + " meia hospedagem .\n" + "Com isso lucramos no total: R$ " + total + " em hospedagens");
    
-    var retorno = prompt(nome_Fun + ", você deseja voltar para o inicio? (S/N)");
+    var retorno = prompt(info[0].nome + ", você deseja voltar para o inicio? (S/N)");
 
     if (retorno === "S") {
         inicio();
@@ -140,8 +150,6 @@ function hospedagem_() {
     }
 }
 
-var listaHospedes = [];
-
 function cadastrar_Hospedes() {
     if (listaHospedes.length >= 15) {
         alert("Limite de cadastros atingidos");
@@ -149,7 +157,7 @@ function cadastrar_Hospedes() {
         var hotel_hospedes = prompt("Informe o nome da(o) hóspede: ");
 
         listaHospedes.push(hotel_hospedes);
-        alert(nome_Fun + ", o hospede " + hotel_hospedes + " foi cadastrada(o) com sucesso");
+        alert(info[0].nome + ", o hospede " + hotel_hospedes + " foi cadastrada(o) com sucesso");
     }
 
     hospedagem_();
@@ -159,9 +167,9 @@ function hospedes_Pesquisa() {
     var hotel_hospedes = prompt("Pesquie o nome da(o) hospede: ");
 
     if (listaHospedes.includes(hotel_hospedes)) {
-        alert(nome_Fun + ", o hopede" + hotel_hospedes + ", foi encontrada(o) no sistema");
+        alert(info[0].nome + ", o hopede" + hotel_hospedes + ", foi encontrada(o) no sistema");
     } else {
-        alert(nome_Fun + ", o hospede" + hotel_hospedes + ", não foi encontrada(o) no sistema");
+        alert(info[0].nome + ", o hospede" + hotel_hospedes + ", não foi encontrada(o) no sistema");
     }
 
     hospedagem_();
@@ -169,12 +177,12 @@ function hospedes_Pesquisa() {
 
 function hospedagem_Lista() {
     for (var i = 0; i < listaHospedes.length; i++) {
-        alert(nome_Fun + "o hospede " + listaHospedes[i] + " ocupa a posição: " + i);
+        alert(info[0].nome + "o hospede " + listaHospedes[i] + " ocupa a posição: " + (i + 1));
     }
 }
 
 function hospedagem_Erro() {
-    alert(nome_Fun + ", por gentileza informe numeros de 1 a 4");
+    alert(info[0].nome + ", por gentileza informe numeros de 1 a 4");
     hospedagem_();
 }
 
@@ -186,17 +194,17 @@ function hotel_Eventos() {
     var custo = duracao * preco_Garcons;
     var custo_Total = custo * garcons;
 
-    alert(nome_Fun + ", o custo total do evento é R$" + custo_Total);
-    var resposta_2 = prompt(nome_Fun + ", você confirma está reserva (S/N)");
+    alert(info[0].nome + ", o custo total do evento é R$" + custo_Total);
+    var resposta_2 = prompt(info[0].nome + ", você confirma está reserva (S/N)");
 
     if (resposta_2 === "S") {
-        alert(nome_Fun + ", à reserva  foi efetuada para o " + nome_Hotel + ", com sucesso !!");
+        alert(info[0].nome + ", à reserva  foi efetuada para o " + info[0].hotel + ", com sucesso !!");
     } else {
-        alert(nome_Fun + ", à reserva não foi  efetuada para o " + nome_Hotel);
+        alert(info[0].nome + ", à reserva não foi  efetuada para o " + info[0].hotel);
         hotel_Eventos();
     }
 
-    var retorno = prompt(nome_Fun + ", você deseja voltar para o inicio? (S/N)");
+    var retorno = prompt(info[0].nome + ", você deseja voltar para o inicio? (S/N)");
 
     if (retorno === "S") {
         inicio();
@@ -226,22 +234,22 @@ function hotel_Buffet() {
     alert("Será necessário para o buffet, " + cafe_Quant + " litros de café, " + agua_Quant + " litros de agua, e " + salgado_Quant + " salgados, para servir os " + num_convidados + " convidados do buffet");
     alert("O custo do buffet é R$" + custoComida);
 
-    var confirma = prompt( nome_Fun + ", deseja efetuar à reserva? (S/N)");
+    var confirma = prompt( info[0].nome + ", deseja efetuar à reserva? (S/N)");
 
     if (confirma === "S") {
-        alert(nome_Fun + ", o buffet foi contratado !!");
+        alert(info[0].nome + ", o buffet foi contratado !!");
     } else {
-        alert(nome_Fun + ", o bufett foi recusado");
+        alert(info[0].nome + ", o bufett foi recusado");
         hotel_Buffet();
     }
 
-    var contratar = prompt(nome_Fun + ", você quer contratar garçons para esse buffet? (S/N)");
+    var contratar = prompt(info[0].nome + ", você quer contratar garçons para esse buffet? (S/N)");
 
     if (contratar === "S") {
         hotel_Eventos();
     } else
 
-    var retorno = prompt(nome_Fun + ", você deseja voltar para o inicio? (S/N)");
+    var retorno = prompt(info[0].nome + ", você deseja voltar para o inicio? (S/N)");
 
     if (retorno === "S") {
         inicio();
@@ -267,16 +275,16 @@ function hotel_Auditorio() {
         alert("Utilize o auditório colorado");
     }
 
-    var confirma_2 = prompt(nome_Fun + ", você gostaria de efetuar a reserva? (S/N)");
+    var confirma_2 = prompt(info[0].nome + ", você gostaria de efetuar a reserva? (S/N)");
 
     if (confirma_2 === "S") {
-        alert(nome_Fun + ", à reserva foi efetuada");
+        alert(info[0].nome + ", à reserva foi efetuada");
     } else {
-        alert(nome_Fun + ", à reserva não foi efetuada");
+        alert(info[0].nome + ", à reserva não foi efetuada");
         hotel_Auditorio();
     }
 
-    var retorno = prompt(nome_Fun + ", você deseja voltar para o inicio? (S/N)");
+    var retorno = prompt(info[0].nome + ", você deseja voltar para o inicio? (S/N)");
 
     if (retorno === "S") {
         inicio();
@@ -291,31 +299,31 @@ function restaurante_Hotel() {
     var empresa = prompt("Qual o nome da sua empresa");
 
     if (dia == "segunda" && hora >= 7 && hora <= 23) {
-        alert(nome_Fun + ", o restaurante foi reservado para " + empresa + " na " + dia + " para às " + hora + "hs");
+        alert(info[0].nome + ", o restaurante foi reservado para " + empresa + " na " + dia + " para às " + hora + "hs");
     }
     else if (dia == "terça" && hora >= 7 && hora <= 23) {
-        alert(nome_Fun + ", o restaurante foi reservado para " + empresa + " na " + dia + " para às " + hora + "hs");
+        alert(info[0].nome + ", o restaurante foi reservado para " + empresa + " na " + dia + " para às " + hora + "hs");
     }
     else if (dia == "quarta" && hora >= 7 && hora <= 23) {
-        alert(nome_Fun + ", o restaurante foi reservado para " + empresa + " na " + dia + " para às " + hora + "hs");
+        alert(info[0].nome + ", o restaurante foi reservado para " + empresa + " na " + dia + " para às " + hora + "hs");
     }
     else if (dia == "quinta" && hora >= 7 && hora <= 23) {
-        alert(nome_Fun + ", o restaurante foi reservado para " + empresa + " na " + dia + " para às " + hora + "hs");
+        alert(info[0].nome + ", o restaurante foi reservado para " + empresa + " na " + dia + " para às " + hora + "hs");
     }
     else if (dia == "sexta" && hora >= 7 && hora <= 23) {
-        alert(nome_Fun + ", o restaurante foi reservado para " + empresa + " na " + dia + " para às " + hora + "hs");
+        alert(info[0].nome + ", o restaurante foi reservado para " + empresa + " na " + dia + " para às " + hora + "hs");
     }
     else if (dia == "sabado" && hora >= 7 && hora <= 15) {
-        alert(nome_Fun + ", o restaurante foi reservado para " + empresa + " na " + dia + " para às " + hora + "hs");
+        alert(info[0].nome + ", o restaurante foi reservado para " + empresa + " na " + dia + " para às " + hora + "hs");
     }
     else if (dia == "domingo" && hora >= 7 && hora <= 15) {
-        alert(nome_Fun + ", o restaurante foi reservado para " + empresa + " na " + dia + " para às " + hora + "hs");
+        alert(info[0].nome + ", o restaurante foi reservado para " + empresa + " na " + dia + " para às " + hora + "hs");
     }
     else {
-        alert(nome_Fun + ", o restaurante está indisponível");
+        alert(info[0].nome + ", o restaurante está indisponível");
     }
 
-    var retorno = prompt(nome_Fun + ", você deseja voltar para o inicio? (S/N)");
+    var retorno = prompt(info[0].nome + ", você deseja voltar para o inicio? (S/N)");
 
     if (retorno === "S") {
         inicio();
@@ -345,7 +353,7 @@ function abastecimento_Hotel() {
         alert("A gasolina no posto Stark Petrol está mais barato");
     }
 
-    var retorno = prompt(nome_Fun + ", você deseja voltar para o inicio? (S/N)");
+    var retorno = prompt(info[0].nome + ", você deseja voltar para o inicio? (S/N)");
 
     if (retorno === "S") {
         inicio();
@@ -372,9 +380,9 @@ function manutencao_Hotel() {
             valor_S -= desconto_S;
         }
 
-        alert(nome_Fun + ", o serviço da " + empresa_N + " vai custar R$" + valor_S);
+        alert(info[0].nome + ", o serviço da " + empresa_N + " vai custar R$" + valor_S);
 
-        var resposta_3 = prompt(nome_Fun + ", você deseja conhecer outros serviços? (S/N)");
+        var resposta_3 = prompt(info[0].nome + ", você deseja conhecer outros serviços? (S/N)");
 
         if (valor_S < menor_V) {
             menor_V = valor_S;
@@ -384,9 +392,9 @@ function manutencao_Hotel() {
         empresas.push({ nome: empresa_N, valor: valor_S });
     } while (resposta_3 === "S");
 
-    alert(nome_Fun + ", o orçamento com valor mais baixo é da " + empresa_O + " no valor de R$" + menor_V);
+    alert(info[0].nome + ", o orçamento com valor mais baixo é da " + empresa_O + " no valor de R$" + menor_V);
 
-    var retorno = prompt(nome_Fun + ", você deseja voltar para o inicio? (S/N)");
+    var retorno = prompt(info[0].nome + ", você deseja voltar para o inicio? (S/N)");
 
     if (retorno === "S") {
         inicio();
@@ -396,13 +404,13 @@ function manutencao_Hotel() {
 }
 
 function erro() {
-    alert(nome_Fun + ", por favor informe um número entre 1 e 10.");
+    alert(info[0].nome + ", por favor informe um número entre 1 e 10.");
     inicio();
 }
 
 function sair() {
-    var confirma_3 = confirm(nome_Fun + "você deseja encerrar o programa?");
-    alert("Agradecemos por usar este programa " + nome_Fun + ", foi um prazer ter você por aqui!!");
+    var confirma_3 = confirm(info[0].nome + "você deseja encerrar o programa?");
+    alert("Agradecemos por usar este programa " + info[0].nome + ", foi um prazer ter você por aqui!!");
 
     if (confirma_3 === true) {
         window.close();
